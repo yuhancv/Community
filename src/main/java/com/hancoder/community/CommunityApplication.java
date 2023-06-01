@@ -10,6 +10,8 @@ public class CommunityApplication {
 
     //add
 
+    //add
+
     public static void main(String[] args) {
         SpringApplication.run(CommunityApplication.class, args);
     }
