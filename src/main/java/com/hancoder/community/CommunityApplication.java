@@ -12,8 +12,13 @@ public class CommunityApplication {
 
     //add
 
+
+
     public static void main(String[] args) {
         SpringApplication.run(CommunityApplication.class, args);
     }
 
+    public void print(){
+        System.out.println("修改了");
+    }
 }
