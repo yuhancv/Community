@@ -5,16 +5,17 @@ import com.mysql.cj.conf.PropertyDefinitions;
 
 import java.util.Date;
 
+//用户讨论实体类
 public class DiscussPost {
-    private int id;
-    private int userId;
-    private String title;
-    private String content;
-    private int type;
-    private int status;
-    private Date createTime;
-    private int comment;
-    private double score;
+    private int id; // 讨论的ID
+    private int userId; // 用户的ID
+    private String title;   // 帖子的标题
+    private String content; //帖子的内容
+    private int type; //帖子的类型 1表示置顶
+    private int status; // 帖子的状态 0是正常 2是精华
+    private Date createTime;    //帖子的创建日期
+    private int commentCount;    // 冗余的字段 评论的数量
+    private double score; // 帖子的分数
 
     public int getId() {
         return id;
@@ -72,12 +73,12 @@ public class DiscussPost {
         this.createTime = createTime;
     }
 
-    public int getComment() {
-        return comment;
+    public int getCommentCount() {
+        return commentCount;
     }
 
-    public void setComment(int comment) {
-        this.comment = comment;
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 
     public double getScore() {
@@ -98,10 +99,13 @@ public class DiscussPost {
                 ", type=" + type +
                 ", status=" + status +
                 ", createTime=" + createTime +
-                ", comment=" + comment +
+                ", commentCount=" + commentCount +
                 ", score=" + score +
                 '}';
     }
 }
+
+
+
 
 

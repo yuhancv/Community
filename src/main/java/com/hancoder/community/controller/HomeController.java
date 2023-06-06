@@ -20,6 +20,8 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    //响应的是网页 不需要写ResponseBody
+    //Model 用于从控制层直接返回前端需要的数据
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String getIndexPage(Model model, Page page){
         //方法调用之前 spring mvc自动实例化 model 和 page， page自动注入model
@@ -29,6 +31,8 @@ public class HomeController {
         page.setPath("/index");
 
         List<DiscussPost> list = discussPostService.findDiscussPosts(0, page.getOffSet(), page.getLimit());
+
+        //Map<String, Object>
         List<Map<String, Object>> listOfPosts = new ArrayList<>();
 
         if (!list.isEmpty()){
@@ -41,6 +45,8 @@ public class HomeController {
         }
 
         model.addAttribute("discussPosts", listOfPosts);
+
+        //最终返回的是模板的路径
         return "/index";
     }
 

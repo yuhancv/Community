@@ -37,4 +37,15 @@ public class TestMapper {
        System.out.println(discussPostMapper.selectDiscussPostRows(0));
     }
 
+    @Test
+    public void Test2(){
+        List<DiscussPost> list = discussPostMapper.selectDiscussPosts(149, 0, Integer.MAX_VALUE);
+
+        for (DiscussPost post : list) {
+            System.out.println(post);
+        }
+    }
+
+
+
 }

@@ -2,23 +2,27 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.hancoder.community.dao.DiscussPostMapper">
 
+    <!-- 查询的字段 -->
     <sql id="selectFields">
         id, user_id, title, content, type, status, create_time, comment_count, score
     </sql>
 
+    <!-- 返回类型如果不是Java自带的类型  需要声明-->
     <select id="selectDiscussPosts" resultType="DiscussPost">
         select <include refid="selectFields"></include>
         from discuss_post
-        where status != 2
-        <if test="userId != 0">
-            and user_id = #{userId}
+        where status != 2 -- 用户评论不能为拉黑状态
+        <if test="userId != 0">  -- 对userId做出判断， 当其不为0的时候 需要拼接到sql里面
+            and user_id = #{userId} -- 拼接用户id
         </if>
-        order by type desc, create_time desc
-        limit #{offset}, #{limit}
+        order by type desc, create_time desc  -- 指定排到前面
+        limit #{offset}, #{limit}  -- sql的limit 第一个参数表示 从第几行开始查询 第二个参数表示几条数据
     </select>
 
+    <!-- int为基本类型 不声明也可以 -->
     <select id="selectDiscussPostRows" resultType="int">
         select count(id)
         from discuss_post
